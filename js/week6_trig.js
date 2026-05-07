@@ -137,6 +137,15 @@ states["play"] = function()
 	//------------------------------------------------------END OF INSTRUCTIONS-------------------------------------------------
 	//--------------------------------------------------------------------------------------------------------------------------
 
+	var dx = mouse.x - player.x;
+	var dy = mouse.y - player.y;
+	var radians = Math.atan2(dy, dx);
+	var deg = radians * 180/Math.PI;
+	player.angle = deg;
+
+	player.vx = Math.cos(radians) * player.force;
+	player.vy = Math.sin(radians) * player.force;
+
 	player.move();
 
 	if(goal.hitTestPoint(player))
